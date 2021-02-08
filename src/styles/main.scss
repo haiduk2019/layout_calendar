@@ -1,3 +1,79 @@
+$size: 100px;
+
 body {
   margin: 0;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.calendar {
+  display: flex;
+  flex-wrap: wrap;
+  width: 707px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+
+  @for $i from 1 through 31 {
+    :nth-of-type(#{$i}) {
+      display: none;
+    }
+  }
+}
+
+$days: (
+  1: tue,
+  2: wed,
+  3: thu,
+  4: fri,
+  5: sat,
+  6: sun,
+);
+
+@each $num, $day in $days {
+  .calendar-#{$day} {
+    :nth-of-type(1) {
+      margin-left: #{$num + $size * $num};
+    }
+  }
+}
+
+@for $i from 28 through 31 {
+  .calendar-#{$i} {
+    @for $j from 1 through $i {
+      :nth-of-type(#{$j}) {
+        display: block;
+        width: $size;
+        height: $size;
+        background-color: #eee;
+        border: 1px solid;
+        margin-bottom: 1px;
+        margin-right: 1px;
+        position: relative;
+
+        &:before {
+          position: absolute;
+          top: 50%;
+          left: 50%;
+          transform: translate(-50%, -50%);
+          content: "#{$i}";
+          font-family: inherit;
+          font-size: 30px;
+        }
+
+        &:hover {
+          cursor: pointer;
+          bottom: 20px;
+          background-color: pink;
+          transition: 0.5s ease;
+        }
+      }
+    }
+  }
 }
