@@ -20,32 +20,37 @@ body {
   left: 50%;
   transform: translate(-50%, -50%);
 
+  div {
+    display: none;
+    width: $size;
+    height: $size;
+    background-color: #eee;
+    border: 1px solid;
+    margin-bottom: 1px;
+    margin-right: 1px;
+    position: relative;
+
+    &:before {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      font-family: inherit;
+      font-size: 30px;
+    }
+
+    &:hover {
+      cursor: pointer;
+      bottom: 20px;
+      background-color: pink;
+      transition: 0.5s ease;
+    }
+  }
+
   @for $i from 1 through 31 {
     :nth-of-type(#{$i}) {
-      display: none;
-      width: $size;
-      height: $size;
-      background-color: #eee;
-      border: 1px solid;
-      margin-bottom: 1px;
-      margin-right: 1px;
-      position: relative;
-
       &:before {
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
         content: "#{$i}";
-        font-family: inherit;
-        font-size: 30px;
-      }
-
-      &:hover {
-        cursor: pointer;
-        bottom: 20px;
-        background-color: pink;
-        transition: 0.5s ease;
       }
     }
   }
