@@ -21,7 +21,6 @@ body {
   transform: translate(-50%, -50%);
 
   div {
-    display: none;
     width: $size;
     height: $size;
     background-color: #eee;
@@ -73,11 +72,11 @@ $days: (
   }
 }
 
-@for $i from 28 through 31 {
+@for $i from 28 through 30 {
   .calendar-#{$i} {
-    @for $j from 1 through $i {
-      :nth-of-type(#{$j}) {
-        display: block;
+    @for $j from $i through 30 {
+      :nth-of-type(#{$j + 1}) {
+        display: none;
       }
     }
   }
